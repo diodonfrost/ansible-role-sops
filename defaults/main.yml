@@ -1,2 +1,6 @@
 ---
 # defaults file for sops
+
+sops_version: latest
+sops_pkg_url: "{{ default_sops_pkg_url }}"
+sops_bin_directory: "{{ default_sops_bin_directory }}"

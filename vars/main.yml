@@ -1,2 +1,6 @@
 ---
 # vars file for sops
+base_arch:
+  x86_64: 'amd64'
+  amd64: 'amd64'
+  aarch64: 'arm64'

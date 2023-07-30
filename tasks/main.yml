@@ -1,2 +1,14 @@
 ---
 # tasks file for sops
+- name: Include OS specific variables.
+  ansible.builtin.include_vars: "{{ lookup('ansible.builtin.first_found', params) }}"
+  vars:
+    params:
+      files:
+        - "{{ ansible_system }}.yml"
+        - main.yml
+      paths:
+        - 'vars'
+
+- name: Install sops
+  ansible.builtin.include_tasks: "setup-{{ ansible_system }}.yml"

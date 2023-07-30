@@ -1,0 +1,3 @@
+---
+default_sops_pkg_url: "https://github.com/getsops/sops/releases/download/{{ sops_version_to_install }}/sops-{{ sops_version_to_install }}.linux.{{ base_arch[ansible_facts['architecture']] }}"
+default_sops_bin_directory: /usr/local/bin/
