@@ -1,8 +1,10 @@
 ---
 - name: Converge
   hosts: all
-  gather_facts: false
   tasks:
-    - name: "Include diodonfrost.sops"
-      ansible.builtin.include_role:
-        name: "diodonfrost.sops"
+    - name: "Include ansible-role-sops"
+      include_role:
+        name: "ansible-role-sops"
+      vars:
+        sops_theme: "{{ ansible_env.sops_theme }}"
+        sops_plugins: "{{ ansible_env.sops_plugins.split(',') }}"

@@ -1,0 +1,6 @@
+---
+- name: Prepare
+  hosts: all
+  gather_facts: false
+  tasks:
+    - ansible.windows.win_shell: echo "nothing to do"

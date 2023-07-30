@@ -2,11 +2,11 @@
 - name: Verify
   hosts: all
   tasks:
-    - name: Linux | Sops should be functionnal
-      command: sops --version
+    - name: Windows | Sops should be functionnal
+      ansible.windows.win_command: sops --version
       register: sops_version_result
 
-    - name: Linux | Verify commands outputs
+    - name: Windows | Verify commands outputs
       assert:
         that:
           - sops_version_result.rc == 0
