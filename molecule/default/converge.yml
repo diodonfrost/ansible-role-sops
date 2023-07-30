@@ -3,8 +3,7 @@
   hosts: all
   tasks:
     - name: "Include ansible-role-sops"
-      include_role:
+      ansible.builtin.include_role:
         name: "ansible-role-sops"
       vars:
-        sops_theme: "{{ ansible_env.sops_theme }}"
-        sops_plugins: "{{ ansible_env.sops_plugins.split(',') }}"
+        sops_version: "{{ lookup('env', 'sops_version') | default('latest', true) }}"
