@@ -1,6 +1,14 @@
 ---
 # defaults file for sops
 
+# Define sops version to install
+# Default: latest
 sops_version: latest
+
+# Define where to download sops package url
+# Default: use local system path defined in Ansible vars/*.yml
 sops_pkg_url: "{{ default_sops_pkg_url }}"
+
+# Define where to install sops binary
+# Default: use local system path defined in Ansible vars/*.yml
 sops_bin_directory: "{{ default_sops_bin_directory }}"
