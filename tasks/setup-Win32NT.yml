@@ -1,0 +1,26 @@
+---
+- name: Windows | Get the latest published full release for the repository
+  ansible.windows.win_uri:
+    url: https://api.github.com/repos/getsops/sops/releases/latest
+    return_content: yes
+    headers:
+      user-agent: Mozilla/5.0
+  register: sops_releases_index
+  check_mode: no
+  when: sops_version == 'latest'
+
+- name: Windows | Find the latest Sops version
+  ansible.builtin.set_fact:
+    sops_version_to_install: "{{ (sops_releases_index.content | from_json).name }}"
+  when: sops_version == 'latest'
+
+- name: Windows | Use the specified Sops version when latest var is not define
+  ansible.builtin.set_fact:
+    sops_version_to_install: "{{ sops_version }}"
+  when: sops_version != 'latest'
+
+- name: Windows | Download Sops
+  ansible.windows.win_get_url:
+    url: "{{ sops_pkg_url }}"
+    dest: "{{ sops_bin_directory }}sops.exe"
+    force: false
