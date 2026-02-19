@@ -5,9 +5,10 @@
     - name: Windows | Sops should be functionnal
       ansible.windows.win_command: sops --version
       register: sops_version_result
+      changed_when: false
 
     - name: Windows | Verify commands outputs
-      assert:
+      ansible.builtin.assert:
         that:
           - sops_version_result.rc == 0
         success_msg: "All tests passed"
